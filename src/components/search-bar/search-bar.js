@@ -2,37 +2,24 @@ import React from 'react';
 import './style.css';
 
 export default class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: ''
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e) {
-    this.setState({
-      value: e.target.value
-    });
-  }
-
   render() {
     return (
       <div className="search-bar">
         <input
           className="search-bar__input"
           type="search"
-          value={this.state.value}
+          value={this.props.value}
           placeholder="Search..."
-          onChange={this.handleChange}
+          onChange={this.props.handleChangeOnInput}
         />
         <label className="search-bar-checkbox__title">
           <input
             className="search-bar-checkbox"
             type="checkbox"
+            checked={this.props.checked}
             name="checkbox"
             id=""
+            onChange={this.props.handleChangeOnCheckBox}
           />
           {'Only show products in stock'}
         </label>
