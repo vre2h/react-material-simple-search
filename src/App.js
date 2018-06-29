@@ -1,11 +1,11 @@
 import React from 'react';
 
 import './App.css';
-import Search from './search/search.js';
+import FilterableProductTable from './components/filterable-product-table/filterable-product-table.js';
 
 class App extends React.Component {
   render() {
-    return <Search />;
+    return <FilterableProductTable />;
   }
 }
 export default App;
