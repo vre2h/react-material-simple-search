@@ -1,9 +1,18 @@
 import React from 'react';
-import './style.css';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+
 import SearchBar from '../search-bar/search-bar';
 import ProductTable from '../product-table/product-table';
+import { Grid, withStyles } from '@material-ui/core';
 
-export default class FilterableProductTable extends React.Component {
+const styles = {
+  root: {
+    height: '100vh'
+  }
+};
+
+class FilterableProductTable extends React.Component {
   constructor(props) {
     super(props);
 
@@ -29,6 +38,8 @@ export default class FilterableProductTable extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     let filteredProducts = this.props.products;
     const stockState = this.state.isStockOnly;
     const filteredTextState = this.state.filteredText;
@@ -44,17 +55,35 @@ export default class FilterableProductTable extends React.Component {
       : filteredProducts;
 
     return (
-      <div className="filterable-product-table">
-        <div className="filterable-product-table__wrapper">
-          <SearchBar
-            handleChangeOnInput={this.handleChangeOnInput}
-            handleChangeOnCheckBox={this.handleChangeOnCheckBox}
-            value={this.state.filteredText}
-            checked={this.state.isStockOnly}
-          />
-          <ProductTable products={resultProducts || this.props.products} />
-        </div>
-      </div>
+      <Grid
+        container
+        className={classes.root}
+        direction="row"
+        justify="center"
+        alignItems="center"
+      >
+        <Grid item xs={12} sm={6}>
+          <Card>
+            <CardContent>
+              <div className="filterable-product-table">
+                <div className="filterable-product-table__wrapper">
+                  <SearchBar
+                    handleChangeOnInput={this.handleChangeOnInput}
+                    handleChangeOnCheckBox={this.handleChangeOnCheckBox}
+                    value={this.state.filteredText}
+                    checked={this.state.isStockOnly}
+                  />
+                  <ProductTable
+                    products={resultProducts || this.props.products}
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
     );
   }
 }
+
+export default withStyles(styles)(FilterableProductTable);
