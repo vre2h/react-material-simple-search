@@ -1,5 +1,6 @@
 import React from 'react';
-import './style.css';
+
+import { TableCell, TableRow } from '@material-ui/core';
 
 const ProductRow = props => {
   const name = props.product.stocked ? (
@@ -8,10 +9,10 @@ const ProductRow = props => {
     <span style={{ color: 'red' }}>{props.product.name}</span>
   );
   return (
-    <tr>
-      <td>{name}</td>
-      <td>{props.product.price}</td>
-    </tr>
+    <TableRow>
+      <TableCell>{name}</TableCell>
+      <TableCell>{props.product.price}</TableCell>
+    </TableRow>
   );
 };
 

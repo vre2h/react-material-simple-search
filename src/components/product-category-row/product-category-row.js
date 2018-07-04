@@ -1,10 +1,12 @@
 import React from 'react';
-import './style.css';
+import { TableRow, TableCell, TableHead } from '@material-ui/core';
 
 const ProductCategoryRow = props => (
-  <tr>
-    <th colSpan="2">{props.category}</th>
-  </tr>
+  <TableHead>
+    <TableRow>
+      <TableCell colSpan="2">{props.category}</TableCell>
+    </TableRow>
+  </TableHead>
 );
 
 export default ProductCategoryRow;

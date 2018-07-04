@@ -1,10 +1,26 @@
 import React from 'react';
-import './style.css';
+import {
+  withStyles,
+  Table,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell
+} from '@material-ui/core';
+
 import ProductCategoryRow from '../product-category-row/product-category-row';
 import ProductRow from '../product-row/product-row';
 
-export default class ProductTable extends React.Component {
+const styles = {
+  root: {
+    width: '100%'
+  }
+};
+
+class ProductTable extends React.Component {
   render() {
+    const { classes } = this.props;
+
     const products = this.props.products;
     const uniqueCtg = products
       .map(prod => prod.category)
@@ -22,15 +38,17 @@ export default class ProductTable extends React.Component {
     });
 
     return (
-      <table className="product-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
+      <Table className={classes.root}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+            <TableCell>Price</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>{rows}</TableBody>
+      </Table>
     );
   }
 }
+
+export default withStyles(styles)(ProductTable);
